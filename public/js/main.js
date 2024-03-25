@@ -45,3 +45,11 @@ themeToggleBtn.addEventListener('click', function() {
     }
     
 });
+
+
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const sidebar = document.getElementById('sidebar');
+
+mobileMenuButton.addEventListener('click', function() {
+    sidebar.classList.toggle('hidden');
+});

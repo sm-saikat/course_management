@@ -1,0 +1,6 @@
+{
+    "name": "course_management_chat_server",
+    "version": "1.0.0",
+    "type": "module",
+    "main": "index.js"
+}

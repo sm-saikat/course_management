@@ -19,7 +19,6 @@ export const authOptions = {
       },
       authorize: async (credentials) => {
         try {
-        console.log('Form Authorize function', credentials);
           await connectDB();
           const user = await User.findOne({ email: credentials.email });
 

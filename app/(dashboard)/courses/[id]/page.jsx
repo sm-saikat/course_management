@@ -6,6 +6,7 @@ import Course from '@/models/Course'
 import { Accordion, AccordionContent, AccordionPanel, AccordionTitle } from 'flowbite-react';
 import { getServerSession } from 'next-auth';
 import Link from 'next/link';
+import { ArrowRight } from 'react-bootstrap-icons';
 
 const CourseDetails = async ({ params }) => {
     const { id } = params;
@@ -19,16 +20,16 @@ const CourseDetails = async ({ params }) => {
     return (
         <div>
             <div>
-                <h3 className="text-xl font-medium">Course details</h3>
+                <h3 className="text-xl font-medium dark:text-gray-200">Course details</h3>
                 <hr className="my-4" />
 
-                <div className='flex gap-6'>
-                    <div className='w-1/2'>
+                <div className='flex max-sm:flex-col gap-6'>
+                    <div className='w-1/2 max-sm:w-full'>
                         <img className='rounded-md w-full' src={`${process.env.HOST}/uploads/${course.thumbnail}`} alt="" />
                     </div>
-                    <div className='w-1/2'>
-                        <h3 className='text-2xl font-medium'>{course.name}</h3>
-                        <p className='mt-4'>
+                    <div className='w-1/2 max-sm:w-full'>
+                        <h3 className='text-2xl font-medium dark:text-gray-200'>{course.name}</h3>
+                        <p className='mt-4 dark:text-gray-400'>
                             {course.details}
                         </p>
 
@@ -59,17 +60,17 @@ const CourseDetails = async ({ params }) => {
                             }
                         </div>
                         <div className='mt-4'>
-                            <Link href={`/chat/${id}`} type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Chat with students</Link>
+                            <Link href={`/chat/${id}`} type="button" class="flex items-center justify-center gap-2 w-fit text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Go to course chat <ArrowRight /></Link>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div className='py-10'>
-                <h3 className="text-xl font-medium">Course Videos</h3>
+                <h3 className="text-xl font-medium dark:text-gray-200">Course Videos</h3>
                 <hr className="my-4" />
 
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 max-sm:grid-cols-1 max-md:grid-cols-2 gap-4">
                     {course.videos.map((video, index) => {
                         return (
                             <div key={index} className="max-w-sm p-2 bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 flex flex-col justify-center items-center">
@@ -82,7 +83,7 @@ const CourseDetails = async ({ params }) => {
 
             <div className='py-10'>
                 <div className='flex gap-2 items-center'>
-                    <h3 className="text-xl font-medium">Course Assignments</h3>
+                    <h3 className="text-xl font-medium dark:text-gray-200">Course Assignments</h3>
                     {
                         user.role === 'lecturer' && (
                             <Link href={'/assignments/create/' + id} type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Create new</Link>

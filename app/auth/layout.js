@@ -7,7 +7,7 @@ const AuthLayout = async ({children}) => {
   const session = await getServerSession(authOptions);
 
   return session ? (
-    redirect('/')
+    redirect('/dashboard')
   ) : (
     <div>
       {children}

@@ -2,9 +2,9 @@ import AssignmentCard from "@/components/AssignmentCard";
 import CourseCard from "@/components/CourseCard";
 import { getServerSession } from "next-auth";
 import {PlusCircle } from "react-bootstrap-icons";
-import { authOptions } from "../api/auth/[...nextauth]/route";
 import { headers } from "next/headers";
 import Link from "next/link";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export default async function Home() {
 	const response = await fetch(`${process.env.API_BASE_URL}/courses`, {
@@ -21,10 +21,10 @@ export default async function Home() {
 
 	return (
 		<div>
-			<h3 className="text-xl font-medium">All Courses</h3>
+			<h3 className="text-xl font-medium dark:text-gray-200">All Courses</h3>
 			<hr className="my-4" />
 
-			<div className="courses grid grid-cols-3 gap-4">
+			<div className="courses grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 				{courses.map((course) => {
 					return <CourseCard key={course.id} course={course} />;
 				})}

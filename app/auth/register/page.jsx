@@ -36,7 +36,7 @@ const Register = () => {
   };
 
   return (
-    <div className="w-full pt-20">
+    <div className="w-full pt-10">
       <div className="w-full m-auto max-w-lg p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
         <form className="space-y-6" onSubmit={handleSubmit}>
           <h5 className="text-xl font-medium text-gray-900 dark:text-white">

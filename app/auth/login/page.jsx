@@ -25,7 +25,7 @@ const Login = () => {
 
         setSubmitting(false);
         if (!response.error) {
-            router.push("/");
+            router.push("/dashboard");
             router.refresh();
         } else {
             console.log(response);
@@ -34,7 +34,7 @@ const Login = () => {
     }
 
     return (
-        <div className='w-full pt-20'>
+        <div className='w-full pt-10'>
             <div className="w-full m-auto max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
                 <form className="space-y-6" onSubmit={handleSubmit}>
                     <h5 className="text-xl font-medium text-gray-900 dark:text-white">Sign in to Dashboard</h5>
