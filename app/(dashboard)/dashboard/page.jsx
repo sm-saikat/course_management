@@ -10,6 +10,8 @@ export default async function Home() {
 
     const headersInstance = headers()
 
+    console.log('Cookie: ', headersInstance.get('cookie'));
+
 	const response = await fetch(`${process.env.API_BASE_URL}/courses`, {
 		method: "GET",
         headers: {
