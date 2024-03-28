@@ -7,7 +7,7 @@ export default function handler(req, res) {
 			success: true,
 			message: "Socket is already running",
 		});
-		return;
+		res.end();
 	}
 
 	console.log("Starting Socket.IO server on port:");
