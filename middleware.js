@@ -16,6 +16,8 @@ export default withAuth(
             return NextResponse.redirect(new URL('/', req.nextUrl));
         }
         
+    }, {
+        secret: process.env.NEXTAUTH_SECRET
     }
 )
 
