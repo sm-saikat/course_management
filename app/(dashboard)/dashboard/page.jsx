@@ -1,4 +1,3 @@
-import AssignmentCard from "@/components/AssignmentCard";
 import CourseCard from "@/components/CourseCard";
 import { getServerSession } from "next-auth";
 import {PlusCircle } from "react-bootstrap-icons";
@@ -7,13 +6,13 @@ import Link from "next/link";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export default async function Home() {
-    const headers = {
+    const nextHeaders = {
         ...headers(),
     }
 
 	const response = await fetch(`${process.env.API_BASE_URL}/courses`, {
 		method: "GET",
-		headers,
+		headers: nextHeaders,
         cache: "no-store"
 	});
 	const result = await response.json();
