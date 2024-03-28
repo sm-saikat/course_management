@@ -1,36 +1,35 @@
+'use client';
+
 import CourseCard from "@/components/CourseCard";
-import { getServerSession } from "next-auth";
 import {PlusCircle } from "react-bootstrap-icons";
 import Link from "next/link";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { headers } from "next/headers";
+import {useSession} from "next-auth/react";
+import { useEffect, useState } from "react";
+import withSession from "@/components/HOC/withSession";
 
-export default async function Home() {
-    let courses = [];
+function Home() {
+    const [courses, setCourses] = useState(null);
 
-    const headersInstance = headers()
+    const getCourses = async ()=> {
+        const response = await fetch(`/api/courses`, {
+            method: "GET",
+            credentials: "include",
+        });
 
-    console.log('Cookie: ', headersInstance.get('cookie'));
-
-	const response = await fetch(`${process.env.API_BASE_URL}/courses`, {
-		method: "GET",
-        headers: {
-            cookie: headersInstance.get('cookie') ?? '',
-            authorization: headersInstance.get('authorization') ?? ''
-        },
-        cache: "no-store"
-	});
-	
-    if(response.status === 200) {
-        const result = await response.json();
-        courses = result.data;
+        if(response.status === 200) {
+            const result = await response.json();
+            console.log('Courses: ', result.data);
+            setCourses(result.data);
+        }
     }
 
-    console.log('Home page courses: ', courses);
+	useEffect(()=> {
+        getCourses();
+    }, []);
 
-
-	const session = await getServerSession(authOptions);
-    const user = session.user;
+	const { data: session, status } = useSession();
+    console.log('Session', session);
+    const user = session?.user;
 
 	return (
 		<div>
@@ -39,12 +38,12 @@ export default async function Home() {
 
 			<div className="courses grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 				{courses?.map((course) => {
-					return <CourseCard key={course._id} course={course} author={user.role == 'lecturer'} />;
+					return <CourseCard key={course._id} course={course} author={user?.role == 'lecturer'} />;
 				})}
 
 				
 				{
-                    user.role === "lecturer" && (
+                    user?.role === "lecturer" && (
                         <div className="max-w-sm p-10 bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 flex flex-col justify-center items-center">
 						<Link href="/courses/create"><PlusCircle className="mb-2 text-primary" size={50} /></Link>
 						<p className="text-gray-700 font-medium dark:text-gray-400">
@@ -59,3 +58,6 @@ export default async function Home() {
 		</div>
 	);
 }
+
+
+export default withSession(Home);
