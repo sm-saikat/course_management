@@ -73,6 +73,17 @@ const Navbar = () => {
                                                     aria-labelledby="dropdownDefaultButton"
                                                 >
                                                     <li>
+                                                        <Link
+                                                            href={'/profile'}
+                                                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
+                                                            onClick={() => {
+                                                                setOpenDropdown(false);
+                                                            }}
+                                                        >
+                                                            Profile
+                                                        </Link>
+                                                    </li>
+                                                    <li>
                                                         <a
                                                             className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
                                                             onClick={() => {

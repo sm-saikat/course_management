@@ -60,7 +60,7 @@ const Sidebar = () => {
                                     } rounded-md`}
                                 href={"/courses"}
                             >
-                                <MortarboardFill className="text-primary" size={20} />{!sidebarClose && ' Courses'}
+                                <MortarboardFill className="text-primary" size={20} />{!sidebarClose && ' My Courses'}
                             </Link>
                         )
                     }

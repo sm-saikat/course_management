@@ -34,7 +34,7 @@ export async function POST(req) {
             name,
             syllabus,
             details,
-            features: [language, parts, duration],
+            features: [duration, parts, language],
             thumbnail: thumbnailName,
             videos: JSON.parse(videos),
             author: user.id
