@@ -1,22 +1,25 @@
 import CourseCard from "@/components/CourseCard";
 import { getServerSession } from "next-auth";
 import {PlusCircle } from "react-bootstrap-icons";
-import { headers } from "next/headers";
 import Link from "next/link";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { headers } from "next/headers";
 
 export default async function Home() {
-    const nextHeaders = headers();
 
-    console.log('Next headers', nextHeaders);
+    const headersInstance = headers()
 
 	const response = await fetch(`${process.env.API_BASE_URL}/courses`, {
 		method: "GET",
-        headers: nextHeaders,
+        headers: {
+            cookie: headersInstance.get('cookie') ?? ''
+        },
         cache: "no-store"
 	});
 	const result = await response.json();
 	const courses = result.data;
+
+    console.log('Home page courses: ', courses);
 
 
 	const session = await getServerSession(authOptions);
@@ -29,7 +32,7 @@ export default async function Home() {
 
 			<div className="courses grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 				{courses?.map((course) => {
-					return <CourseCard key={course.id} course={course} author={user.role == 'lecturer'} />;
+					return <CourseCard key={course._id} course={course} author={user.role == 'lecturer'} />;
 				})}
 
 				
