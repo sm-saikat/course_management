@@ -6,13 +6,13 @@ import Link from "next/link";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export default async function Home() {
-    const nextHeaders = {
-        ...headers(),
-    }
+    const nextHeaders = headers();
+
+    console.log('Next headers', nextHeaders);
 
 	const response = await fetch(`${process.env.API_BASE_URL}/courses`, {
 		method: "GET",
-		headers: nextHeaders,
+        headers: nextHeaders,
         cache: "no-store"
 	});
 	const result = await response.json();
@@ -28,7 +28,7 @@ export default async function Home() {
 			<hr className="my-4" />
 
 			<div className="courses grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-				{courses.map((course) => {
+				{courses?.map((course) => {
 					return <CourseCard key={course.id} course={course} author={user.role == 'lecturer'} />;
 				})}
 

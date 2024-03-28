@@ -22,7 +22,7 @@ const Courses = async () => {
             <hr className="my-4" />
 
             <div className="courses grid grid-cols-3 gap-4">
-                {courses.map((course) => {
+                {courses?.map((course) => {
                     return <CourseCard key={course._id} course={course} author={user.role === 'lecturer'} />;
                 })}
 
