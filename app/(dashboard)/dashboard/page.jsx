@@ -6,6 +6,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { headers } from "next/headers";
 
 export default async function Home() {
+    let courses = [];
 
     const headersInstance = headers()
 
@@ -16,8 +17,11 @@ export default async function Home() {
         },
         cache: "no-store"
 	});
-	const result = await response.json();
-	const courses = result.data;
+	
+    if(response.status === 200) {
+        const result = await response.json();
+        courses = result.data;
+    }
 
     console.log('Home page courses: ', courses);
 
