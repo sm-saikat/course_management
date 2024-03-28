@@ -10,6 +10,7 @@ export const authOptions = {
   pages: {
     signIn: "/auth/login",
   },
+  secret: process.env.JWT_SECRET,
   providers: [
     CredentialsProvider({
       credentials: {
