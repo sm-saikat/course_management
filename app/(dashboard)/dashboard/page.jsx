@@ -13,7 +13,8 @@ export default async function Home() {
 	const response = await fetch(`${process.env.API_BASE_URL}/courses`, {
 		method: "GET",
         headers: {
-            cookie: headersInstance.get('cookie') ?? ''
+            cookie: headersInstance.get('cookie') ?? '',
+            authorization: headersInstance.get('authorization') ?? ''
         },
         cache: "no-store"
 	});
