@@ -13,7 +13,7 @@ export default async function Home() {
 
 	const response = await fetch(`${process.env.API_BASE_URL}/courses`, {
 		method: "GET",
-		headers: headers,
+		headers,
         cache: "no-store"
 	});
 	const result = await response.json();
