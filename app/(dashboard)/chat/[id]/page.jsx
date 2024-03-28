@@ -2,7 +2,7 @@
 
 import { Spinner } from 'flowbite-react';
 import { getSession, useSession } from 'next-auth/react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { io } from 'socket.io-client';
 
 const Chat = ({ params }) => {
@@ -28,31 +28,24 @@ const Chat = ({ params }) => {
     }
 
     useEffect(() => {
-        console.log(chatContainer.current)
         fetchMessages();
 
-        const newSocket = io('http://localhost:5000', {
-            withCredentials: true,
-        });
-
-        newSocket.on('message:response', (data) => {
-            setMessageItems(prev => [...prev, data]);
+        fetch('/api/socket').finally(() => {
+            const newSocket = io();
+            newSocket.on('message:response', (data) => {
+                console.log('Response message', data)
+                setMessageItems(prev => [...prev, data]);
+            });
+            newSocket.on('connect', () => {
+                console.log('socket connected');
+            });
+            setSocket(newSocket);
         })
-
-        newSocket.on('connect', () => {
-            console.log('socket connected');
-        });
-
-        setSocket(newSocket);
-
-        return () => {
-            newSocket.disconnect();
-        }
+        
     }, []);
 
     useEffect(() => {
         chatContainer.current.scrollTop = chatContainer.current.scrollHeight;
-        console.log('Scrolled')
     }, [messageItems]);
 
     const handleMessageSubmit = (e) => {

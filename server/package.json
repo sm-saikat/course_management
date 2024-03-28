@@ -2,5 +2,12 @@
     "name": "course_management_chat_server",
     "version": "1.0.0",
     "type": "module",
-    "main": "index.js"
+    "scripts": {
+        "start": "node index.js"
+    },
+    "main": "index.js",
+    "dependencies": {
+        "next-auth": "^4.24.7",
+        "socket.io": "^4.7.5"
+    }
 }

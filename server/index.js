@@ -9,7 +9,7 @@ async function init(){
 
     const io = new Server(httServer, {
         cors: {
-            origin: 'http://localhost:3000',
+            origin: ['http://localhost:3000', 'https://course-management-el1s.onrender.com'],
             methods: ['GET', 'POST'],
             credentials: true
         }
@@ -31,7 +31,7 @@ async function init(){
             cb('Message received');
 
             // Save message to database
-            const response = await fetch('http://localhost:3000/api/messages', {
+            const response = await fetch('https://course-management-el1s.onrender.com/api/messages', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
