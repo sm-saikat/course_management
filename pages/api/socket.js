@@ -11,7 +11,7 @@ export default function handler(req, res) {
 
 	console.log("Starting Socket.IO server on port:");
 
-	const io = new Server(res.socket.server);
+	const io = new Server(res.socket.server).listen(process.env.PORT);
 
 	io.use(async (socket, next) => {
 		const session = await getSession({ req: socket.request });

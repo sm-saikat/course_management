@@ -1,8 +1,7 @@
 'use client';
 
-import { Spinner } from 'flowbite-react';
-import { getSession, useSession } from 'next-auth/react';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { getSession } from 'next-auth/react';
+import { useEffect, useRef, useState } from 'react';
 import { io } from 'socket.io-client';
 
 const Chat = ({ params }) => {
@@ -19,7 +18,7 @@ const Chat = ({ params }) => {
         const session = await getSession();
         setUser(session.user);
 
-        const response = await fetch(`http://localhost:3000/api/messages?courseId=${params.id}`);
+        const response = await fetch(`/api/messages?courseId=${params.id}`);
         if (response.status === 200) {
             const data = await response.json();
             setMessageItems(data.data);
