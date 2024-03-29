@@ -32,7 +32,7 @@ export default function handler(req, res) {
             console.log('Message saving...');
             console.log('API_BASE_URL', process.env.API_BASE_URL);
 			const response = await fetch(
-				`${process.env.API_BASE_URL}/api/messages`,
+				`${process.env.API_BASE_URL}/messages`,
 				{
 					method: "POST",
 					headers: {
