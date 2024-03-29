@@ -30,7 +30,7 @@ export default function handler(req, res) {
 
 			// Save message to database
 			const response = await fetch(
-				"http://localhost:3000/api/messages",
+				`${process.env.API_BASE_URL}/api/messages`,
 				{
 					method: "POST",
 					headers: {
