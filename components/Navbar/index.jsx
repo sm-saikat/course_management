@@ -20,7 +20,7 @@ const Navbar = () => {
                                 href="/"
                                 className="text-2xl font-bold text-gray-800 dark:text-white"
                             >
-                                Logo
+                                LMS
                             </Link>
                         </div>
                         <div className="flex items-center space-x-4">
