@@ -25,7 +25,8 @@ export async function GET(req){
         console.log(err.message);
         return NextResponse.json({
             error: true,
-            message: "Something went wrong"
+            message: "Something went wrong",
+            serverMessage: err.message
         })
     }
 }
