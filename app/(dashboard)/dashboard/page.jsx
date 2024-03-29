@@ -18,7 +18,7 @@ function Home() {
 
         if(response.status === 200) {
             const result = await response.json();
-            console.log('Courses: ', result.data);
+            console.log('Courses: ', result);
             setCourses(result.data);
         }
     }
@@ -60,4 +60,5 @@ function Home() {
 }
 
 
+export const dynamic = "force-dynamic";
 export default withSession(Home);
