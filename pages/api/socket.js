@@ -29,6 +29,8 @@ export default function handler(req, res) {
 			cb("Message received");
 
 			// Save message to database
+            console.log('Message saving...');
+            console.log('API_BASE_URL', process.env.API_BASE_URL);
 			const response = await fetch(
 				`${process.env.API_BASE_URL}/api/messages`,
 				{
