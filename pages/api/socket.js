@@ -3,11 +3,10 @@ import {getSession} from 'next-auth/react';
 
 export default function handler(req, res) {
 	if (res.socket.server.io) {
-		res.status(200).json({
+		return res.status(200).json({
 			success: true,
 			message: "Socket is already running",
 		});
-		res.end();
 	}
 
 	console.log("Starting Socket.IO server on port:");
@@ -54,5 +53,5 @@ export default function handler(req, res) {
 	});
 
 	res.socket.server.io = io;
-	res.status(201).json({ success: true, message: "Socket is started" });
+	return res.status(201).json({ success: true, message: "Socket is started" });
 }
