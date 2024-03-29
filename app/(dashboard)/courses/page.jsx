@@ -1,3 +1,4 @@
+
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import CourseCard from "@/components/CourseCard";
 import Course from "@/models/Course";
@@ -9,9 +10,13 @@ const Courses = async () => {
     const session = await getServerSession(authOptions);
     const user = session?.user;
 
+    const nextHeaders = headers();
+
     const response = await fetch(`${process.env.API_BASE_URL}/courses/my-courses`, {
         method: 'GET',
-        headers: headers()
+        headers: {
+            cookie: nextHeaders.get('cookie')
+        } 
     });
     const result = await response.json();
     const courses = result.data;
